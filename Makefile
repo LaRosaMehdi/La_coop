@@ -10,6 +10,7 @@ GNL			=	lib/gnl/get_next_line.c
 
 SRCS		=	./src/main.c\
 				./src/utils.c\
+				./src/lexer/tokenisateur.c\
 
 
 OBJS		=	$(SRCS:.c=.o)

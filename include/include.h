@@ -20,6 +20,23 @@ t_env;
 
 // structure liste chainée classique
 
+
+// enum struct
+typedef struct s_token
+{ 
+	enum s_type
+	{
+		PIPE,
+		REDIR,
+		RREDIR, //infile
+		WORD,
+		QUOTE,
+		SQUOTE,
+		OPTION
+	} t_type;
+	char *value;
+} t_token;
+
 typedef struct s_list
 {
 	void			*content;
@@ -37,6 +54,9 @@ int	ft_strcmp(char *s1, char *s2);
 char **ft_split (char *str);
 void afftab(char **tab);
 void afflist(t_list *list, char *name);
+t_token *init_type(int type, char *value);
+t_token *tokenizateur(t_list *list);
+void ft_putchar(char c);
 
 //------------------------------------- main.c -------------------------------------
 t_env *get_env(char **env);

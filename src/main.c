@@ -1,5 +1,10 @@
 #include "../include/include.h"
 
+void ft_putchar(char c)
+{
+    write(1, &c, 1);
+}
+
 unsigned int	starter_env(char *s)
 {
 	unsigned int	i = 0;
@@ -42,6 +47,9 @@ t_list *lexer(t_list *str)
 	//printf("TAB VA SUIVRE---->\n");
 	//afftab(tab);
     afflist(list, "Lexer");
+    printf("je vois avant tokenizateur\n");
+    tokenizateur(list);
+    //printf("sortie\n");
     return (list);
 }
 
@@ -57,7 +65,8 @@ int main(int ac, char **av, char **env)
     (void)av;
     //int i = 0;
 	
-
+    // BIBOUUUUUUUUUUUUUU
+    //
 	// while (list[i].name)
 	// {
 	// 	printf("NAME = %s && CONTENT = %s\n", list[i].name, list[i].content);
@@ -65,10 +74,10 @@ int main(int ac, char **av, char **env)
 	// }
     while (42)
 	{
-		printf("0\n");
+        printf("0\n");
 	 	ft_putstr("minishell>");
         str = ft_lstnew(get_next_line(0));
-		//printf("1\n");
+		printf("1\n");
 		ft_lstadd(&history, str);
 		//afflist(history, "History");
 		// printf("history->content = %s\n", history->content);

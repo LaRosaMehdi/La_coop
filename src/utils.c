@@ -1,7 +1,5 @@
 #include "../include/include.h"
 
-#include "../include/include.h"
-
 void afflist(t_list *list, char *name)
 {
     while (list)
@@ -95,34 +93,53 @@ char **ft_split (char *str)
 {
     int i = 0;
     int j = 0;
-    char **tab = malloc(sizeof(char *) * ft_strlen(str));
+    //int save = 0;
+    //int tmp = 0;
+    char **tab = malloc(sizeof(char *) * ft_strlen(str) + 1);
 
-    while (str[i])
+    while (str[i] != '\0')
     {
-        if (str[i] == 34)
+        if (str[i] == '-')
         {
-            while (str[i] != 34)
+            //save = i;
+            tab[j] = ft_strsub(str, 0, i);
+            str = str + i;
+            i = 0;
+            j++;
+        }
+        else if (str[i] == '"')
+        {
+            i = i + 1;
+            while(str[i] != '"')
                 i++;
             tab[j] = ft_strsub(str, 0, i);
             str = str + i + 1;
             i = 0;
             j++;
         }
-        if (str[i] == 39)
+        else if (str[i] == '\'')
         {
-            while (str[i] != 39)
-                i++;
-            tab[j] = ft_strsub(str, 0, i);
+            i = i + 1;    
+            tab[j] = ft_strsub(str, 0, i + 1);
             str = str + i + 1;
             i = 0;
             j++;
         }
+        else
+        {
+            tab[j] = ft_strsub(str, 0, i);
+            str = str + i;
+            i = 0;
+            j++;
+        }
+        //printf("tab[%d] = %s et la taille = %d\n", j, tab[j], ft_strlen(tab[j]));
         i++;
     }
-    tab[j] = ft_strsub(str, 0, i);
+    tab[j] = ft_strsub(str, 0, i + 1);
     tab[j + 1] = NULL;
     return (tab);
 }
+
 void afftab(char **tab)
 {
     int i = 0;
